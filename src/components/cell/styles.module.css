@@ -1,69 +1,77 @@
 .cell {
-    position: relative;
-    width: 15px;
-    height: 15px;
+  position: relative;
+  width: 15px;
+  height: 15px;
+}
+
+.cell:hover {
+  outline: 1px solid #00000080;
+}
+
+.cell.selected {
+  outline: 1px solid #000;
 }
 
 .cell.selected .info {
-    display: flex;
+  display: flex;
 }
 
 .info {
-    display: none;
-    z-index: 9;
-    position: absolute;
-    left: 50%;
-    bottom: calc(100% + 8px);
-    padding: 5px 9px;
+  display: none;
+  z-index: 9;
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  padding: 5px 9px;
 
-    flex-direction: column;
-    align-items: center;
+  flex-direction: column;
+  align-items: center;
 
-    transform: translateX(-50%);
-    white-space: nowrap;
-    background-color: #000;
-    border-radius: 3px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background-color: #000;
+  border-radius: 3px;
 }
 
 .info span {
-    font-size: 10px;
-    color: #7C7C7C;
+  font-size: 10px;
+  color: #7c7c7c;
 }
 
 .info .contribs {
-    margin-bottom: 4px;
-    font-size: 12px;
-    color: white;
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: white;
 }
 
 .info:after {
-    content: '';
-    display: block;
-    position: absolute;
-    bottom: -8px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 8px 5px 0 5px;
-    border-color: #000000 transparent transparent transparent;
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 5px 0 5px;
+  border-color: #000000 transparent transparent transparent;
 }
 
 .level-1 {
-    background-color: #EDEDED;
+  background-color: #ededed;
 }
 
 .level-2 {
-    background-color: #ACD5F2;
+  background-color: #acd5f2;
 }
 
 .level-3 {
-    background-color: #7FA8C9;
+  background-color: #7fa8c9;
 }
 
 .level-4 {
-    background-color: #527BA0;
+  background-color: #527ba0;
 }
 
 .level-5 {
-    background-color: #254E77;
+  background-color: #254e77;
 }
