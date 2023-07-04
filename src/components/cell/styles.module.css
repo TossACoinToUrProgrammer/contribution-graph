@@ -1,0 +1,15 @@
+.cell {
+    width: 15px;
+    height: 15px;
+    background: #EDEDED;
+}
+
+.cell.selected .info {
+    display: block;
+}
+
+.info {
+    display: none;
+}
+
+.contribs {}
