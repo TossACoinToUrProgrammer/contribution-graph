@@ -1,15 +1,69 @@
 .cell {
+    position: relative;
     width: 15px;
     height: 15px;
-    background: #EDEDED;
 }
 
 .cell.selected .info {
-    display: block;
+    display: flex;
 }
 
 .info {
     display: none;
+    z-index: 9;
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 8px);
+    padding: 5px 9px;
+
+    flex-direction: column;
+    align-items: center;
+
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background-color: #000;
+    border-radius: 3px;
 }
 
-.contribs {}
+.info span {
+    font-size: 10px;
+    color: #7C7C7C;
+}
+
+.info .contribs {
+    margin-bottom: 4px;
+    font-size: 12px;
+    color: white;
+}
+
+.info:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -8px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 5px 0 5px;
+    border-color: #000000 transparent transparent transparent;
+}
+
+.level-1 {
+    background-color: #EDEDED;
+}
+
+.level-2 {
+    background-color: #ACD5F2;
+}
+
+.level-3 {
+    background-color: #7FA8C9;
+}
+
+.level-4 {
+    background-color: #527BA0;
+}
+
+.level-5 {
+    background-color: #254E77;
+}

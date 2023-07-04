@@ -7,10 +7,15 @@ interface ContributionGraphProps {
     data: { [k: string]: number }
 }
 
-
 const ContributionGraph: React.FC<ContributionGraphProps> = ({ data }) => {
-    const [days, setDays] = useState<{ date: string, contribs: number }[]>()
     const CELL_NUMBER = 357
+    const [days, setDays] = useState<{ date: string, contribs: number }[]>()
+    const [selected, setSelected] = useState<string | null>()
+
+    const selectHandler = (id: string) => {
+        if (selected === id) setSelected(null)
+        else setSelected(id)
+    }
 
     useEffect(() => {
         if (days?.length) return
@@ -33,7 +38,7 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({ data }) => {
         <div>
             {days &&
                 <div className={styles.table}>
-                    {days.map(item => <Cell key={item.date} date={item.date} contribs={item.contribs} />)}
+                    {days.map(item => <Cell key={item.date} date={item.date} contribs={item.contribs} onClick={selectHandler} selected={selected === item.date} />)}
                 </div>
             }
         </div>
