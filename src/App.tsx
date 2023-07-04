@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import ContributionGraph from './components/contribution-graph';
-import axios from 'axios';
-
-const url = 'https://dpg.gg/test/calendar.json'
+import { fetchCalendarData } from './utils/requests';
 
 function App() {
-  const [calendarData, setCalendarData] = useState<any>()
+  const [calendarData, setCalendarData] = useState<{ [k: string]: number }>()
+  const [error, setError] = useState<string | undefined>()
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await axios.get(url)
-      setCalendarData(data.data)
+      const data = await fetchCalendarData()
+      if (data) {
+        setCalendarData(data)
+      } else {
+        setError("Something went wrong while fetching data")
+      }
     }
     fetchData()
   }, [])
@@ -19,6 +22,7 @@ function App() {
   return (
     <div className="App">
       {calendarData && <ContributionGraph data={calendarData} />}
+      {error && <div>{error}</div>}
     </div>
   );
 }
