@@ -5,13 +5,15 @@ import { getFirstDate } from '../../utils/helpers/dates'
 import { CELLS_NUMBER, MONTHS } from '../../const'
 import Cell from '../cell'
 import styles from './styles.module.css'
+import CellColors from '../cellColors'
+import { formatDate } from '../../utils/helpers/formatDate'
 
 interface ContributionGraphProps {
     data: { [k: string]: number }
 }
 
 const ContributionGraph: React.FC<ContributionGraphProps> = ({ data }) => {
-    const [dates, setDates] = useState<{ date: string, contribs: number }[]>()
+    const [dates, setDates] = useState<{ id: string, date: Date, contribs: number }[]>()
     const [selected, setSelected] = useState<string | null>()
 
     // data of months bar
@@ -54,7 +56,7 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({ data }) => {
         for (let i = 0; i < CELLS_NUMBER; i++) {
             const date = addDays(firstDate, i)
             const contribs = format(date, 'yyyy-MM-dd')
-            formattedDays.push({ date: date.toDateString(), contribs: data[contribs] || 0 })
+            formattedDays.push({ id: date.toDateString(), date, contribs: data[contribs] || 0 })
         }
 
         setDates(formattedDays)
@@ -66,13 +68,13 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({ data }) => {
     }
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.days}>
-                <span>Пн</span>
-                <span>Ср</span>
-                <span>Пт</span>
-            </div>
-            <div className={styles.tableWrapper}>
+        <div>
+            <div className={styles.wrapper}>
+                <div className={styles.days}>
+                    <span>Пн</span>
+                    <span>Ср</span>
+                    <span>Пт</span>
+                </div>
                 {months &&
                     <div className={styles.months}>
                         {months.map((item: any) => <div key={item.month} style={{ width: `${item.percent}%` }}>{item.month}</div>)}
@@ -80,10 +82,18 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({ data }) => {
                 }
                 {dates &&
                     <div className={styles.table}>
-                        {dates.map(item => <Cell key={item.date} date={item.date} contribs={item.contribs} onClick={selectHandler} selected={selected === item.date} />)}
+                        {dates.map(item => <Cell
+                            key={item.id}
+                            date={formatDate(item.date)}
+                            title={item.contribs + ' Contributions'}
+                            contribs={item.contribs}
+                            onClick={() => selectHandler(item.id)}
+                            selected={selected === item.id}
+                        />)}
                     </div>
                 }
             </div>
+            <CellColors />
         </div>
     )
 }
