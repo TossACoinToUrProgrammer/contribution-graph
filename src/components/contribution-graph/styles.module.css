@@ -1,5 +1,39 @@
+.wrapper {
+    display: flex;
+}
+
 .table {
     display: grid;
-    grid-template-columns: repeat(51, 17px);
-    row-gap: 2px;
+    grid-template-rows: repeat(7, 17px);
+    grid-auto-flow: column;
+    column-gap: 2px;
+}
+
+.tableWrapper {
+    position: relative;
+}
+
+.days {
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px;
+}
+
+.days span {
+    color: #959494;
+    font-size: 12px;
+    line-height: 15px;
+    margin-bottom: 19px;
+}
+
+.months {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -20px;
+    display: flex;
+
+    text-align: center;
+    color: #959494;
+    font-size: 12px;
 }
